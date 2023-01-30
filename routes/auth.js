@@ -8,9 +8,9 @@ const signUpValidation = [
   body('name').isString(),
   body('email')
     .isEmail()
-    .custom((value) => {
+    .custom(async (value) => {
       try {
-        const user = User.findOne({
+        const user = await User.findOne({
           where: {
             email: value,
           },
